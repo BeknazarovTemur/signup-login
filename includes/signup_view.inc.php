@@ -13,7 +13,7 @@ function signup_inputs()
     echo '<input type="password" class="form-control mb-2 border border-dark" name="pwd" placeholder="Password">';
 
     if (isset($_SESSION["signup_data"]["email"]) && !isset($_SESSION["errors_signup"]["email_used"]) && !isset($_SESSION["errors_signup"]["invalid_email"])) {
-        echo '<input type="text" class="form-control mb-2 border border-dark" name="email" placeholder="E-Mail alue="' . $_SESSION["signup_data"]["email"] . '"">';
+        echo '<input type="text" class="form-control mb-2 border border-dark" name="email" placeholder="E-Mail" value="' . $_SESSION["signup_data"]["email"] . '">';
     } else {
         echo '<input type="text" class="form-control mb-2 border border-dark" name="email" placeholder="E-Mail">';
     }

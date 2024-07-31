@@ -1,6 +1,7 @@
 <?php
 require_once("includes/config_session.inc.php");
 require_once("includes/signup_view.inc.php");
+require_once("includes/login_view.inc.php");
 ?>
 
 <!doctype html>
@@ -20,25 +21,37 @@ require_once("includes/signup_view.inc.php");
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
                 <div class="card border border-light-subtle rounded-3 shadow-sm">
                     <div class="card-body p-3 p-md-4 p-xl-5">
-                        <div class="text-center mb-3">
-                            <h1 class="text-info">Log-in</h1>
-                        </div>
-
-                        <form action="includes/login.inc.php" method="post">
-                            <div class="row gy-2 overflow-hidden">
-                                <div class="col-12">
-                                    <div class="mb-4">
-                                        <input type="text" class="form-control mb-2 border border-dark" name="username" placeholder="Username">
-                                        <input type="password" class="form-control mb-2 border border-dark" name="pwd" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-flex gap-2 justify-content-center">
-                                        <button type="submit" class="btn btn-primary mb-5">Log-in</button>
-                                    </div>
-                                </div>
+                        <h3>
+                            <?php
+                            output_username();
+                            ?>
+                        </h3>
+                        <?php
+                        if (!isset($_SESSION['user_id'])) { ?>
+                            <div class="text-center mb-3">
+                                <h1 class="text-info">Log-in</h1>
                             </div>
-                        </form>
+
+                            <form action="includes/login.inc.php" method="post">
+                                <div class="row gy-2 overflow-hidden">
+                                    <div class="col-12">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control mb-2 border border-dark" name="username" placeholder="Username">
+                                            <input type="password" class="form-control mb-2 border border-dark" name="pwd" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <button type="submit" class="btn btn-primary mb-5">Log-in</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        <?php } ?>
+
+                        <?php
+                        check_login_errors();
+                        ?>
 
                         <div class="text-center mb-3">
                             <h1 class="text-info">Sign-up</h1>
@@ -65,6 +78,16 @@ require_once("includes/signup_view.inc.php");
                             check_signup_errors();
                             ?>
                         </div>
+
+                        <form action="includes/logout.inc.php" method="post">
+                            <div class="row gy-2 overflow-hidden">
+                                <div class="col-12">
+                                    <div class="mb-4 d-flex gap-2 justify-content-center">
+                                        <button class="btn btn-danger">Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
